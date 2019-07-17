@@ -1,2 +1,2 @@
 # vigniere-encryption
-Simple program to encrypt or decrypt message using vigniere encryption.
+This is a simple Python program to either encrypt an unencrypted message or decrypt a message that is encrypted using vigniere encryption.
