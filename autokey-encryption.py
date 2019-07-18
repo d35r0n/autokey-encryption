@@ -26,6 +26,9 @@ alph.insert(23, ["X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
 alph.insert(24, ["Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X"])
 alph.insert(25, ["Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y"])
 
+result = []
+key1 = []
+
 calph = {
     "A" : 1,
     "B" : 2,
@@ -55,22 +58,49 @@ calph = {
     "Z" : 26}
 
 #print(calph.get("A")-1)
+n = 0
 
-def encrypt(phrase, key):
-    print("Under Construction")
+def encrypt(phrase,key,n):
+	res = ""
+	l = len(phrase)
+	while(l!=0):
+		key1.append(key[n])
+		if n == 2:
+			n = 0
+		else:
+			n = n + 1
+		l = l - 1
+	for i in range(0,len(phrase)):
+		result.append(alph[calph.get(key1[i])-1][calph.get(phrase[i])-1])
+		res = res + (result[i])
+	print(res)
 
-def decrypt(phrase, key):
-    print("Under Construction")
+def decrypt(phrase,key,n):
+	res = ""
+	l = len(phrase)
+	while(l!=0):
+		key1.append(key[n])
+		if n == 2:
+			n = 0
+		else:
+			n = n + 1
+		l = l - 1
+	for i in range(0,len(phrase)):
+		ind = calph.get(key1[i])-1
+		g = alph[ind].index(phrase[i])
+		result.append(alph[0][g])
+	res = res + (result[i])
+	print(res)
 
 if __name__ == "__main__":
-    confirmation = input("What do you want to do?\n1) Encrypt\n2) Decrypt")
+    confirmation = input("What do you want to do?\n1) Encrypt\n2) Decrypt\n")
     if confirmation == "1":
         phrase  = input("Enter the Message to Encrypt: ")
         key = input("Enter the Key to Encrypt: ")
-        encrypt(phrase, key)
+        encrypt(phrase,key,n)
     elif confirmation == "2":
         phrase  = input("Enter the Message to Decrypt: ")
         key = input("Enter the Key to Decrypt: ")
-        decrypt(phrase, key)
+        decrypt(phrase, key,n)
     else:
         print("That's not a valid option!")
