@@ -56,6 +56,7 @@ calph = {
     "X" : 24,
     "Y" : 25,
     "Z" : 26}
+nums = {"0" : "9","1" : "8", "2" : "7", "3" : "6", "4" : "5", "5" : "4", "6" : "3", "7" : "2", "8" : "1", "9" : "0"}
 
 #print(calph.get("A")-1)
 n = 0
@@ -71,7 +72,15 @@ def encrypt(phrase,key,n):
 			n = n + 1
 		l = l - 1
 	for i in range(0,len(phrase)):
-		result.append(alph[calph.get(key1[i])-1][calph.get(phrase[i])-1])
+		if(phrase[i].isalpha()):
+			if(phrase[i].isupper()):
+				result.append(alph[calph.get(key1[i])-1][calph.get(phrase[i])-1])
+			else:
+				result.append(alph[calph.get(key1[i])-1][calph.get(phrase[i].upper())-1].lower())
+		elif(phrase[i].isnumeric()):
+			result.append(nums.get(phrase[i]))
+		else:
+			result.append(phrase[i])
 		res = res + (result[i])
 	print(res)
 
@@ -86,9 +95,20 @@ def decrypt(phrase,key,n):
 			n = n + 1
 		l = l - 1
 	for i in range(0,len(phrase)):
-		ind = calph.get(key1[i])-1
-		g = alph[ind].index(phrase[i])
-		result.append(alph[0][g])
+		if(phrase[i].isalpha()):
+			if(phrase[i].isupper()):
+				ind = calph.get(key1[i])-1
+				g = alph[ind].index(phrase[i])
+				result.append(alph[0][g])
+			else:
+				phrase[i].upper()
+				ind = calph.get(key1[i])-1
+				g = alph[ind].index(phrase[i])
+				result.append(alph[0][g].lower())
+		elif(phrase[i].isnumeric()):
+			result.append(nums.get(phrase[i]))
+		else:
+			result.append(phrase[i])
 	res = res + (result[i])
 	print(res)
 
