@@ -76,11 +76,7 @@ def decrypt(phrase, key, n):
 			if phrase[i].isupper():
 				result.append(alph[0][alph[calph.get(key1[i])].index(phrase[i])])
 			elif phrase[i].islower():
-				q = phrase[i]
-				phrase.pop(i)
-				q = q.upper()
-				phrase.insert(i, q)
-				result.append((alph[0][alph[calph.get(key1[i])].index(phrase[i])]).lower())
+				result.append((alph[0][alph[calph.get(key1[i])].index((phrase[i]).upper())]).lower())
 		else:
 			result.append(phrase[i])
 		res = res + (result[i])
